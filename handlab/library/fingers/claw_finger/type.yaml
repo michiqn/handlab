@@ -1,0 +1,31 @@
+# Claw index — the index-slot finger of the 3-finger claw. Same printed part as claw_mid,
+# but exported as an independent component with its own local frame, so it carries its OWN
+# verbatim bundle. Chain + joints + limits VERBATIM from the corrected re-export
+# (tests/fixtures/sim_assembly_v67.xml, 07.07.2026); home = 0 = stretched rest = 2048
+# ticks. Index was already correct — byte-identical across the two re-exports.
+name: claw_finger
+label: "Claw index"
+motors: 3
+slot: finger                 # fits the palm's index slot (accepts: finger)
+
+dofs:
+  - { key: spread, label: "Spread", joint: "palm_Umdrehung-23", range: [-0.139626, 1.047198] }
+  - { key: flex,   label: "Flex",   joint: "mcp_yoke_index_Umdrehung-24", range: [-1.221730, 2.094395] }
+  - { key: curl,   label: "Curl",   joint: "index_proximal_Umdrehung-7", range: [-0.349066, 1.919862], coupled: true }
+
+couplings:
+  - { driver: "index_proximal_Umdrehung-7", follower: "index_mid_Umdrehung-8", ratio: 1.0 }
+
+model: model.xml
+root_body: "mcp_yoke_index"
+
+tuning: { damping: 0.005, armature: 1.0e-6, kp: 1.0, kv: 0.03 }
+
+ui:
+  id: claw_finger
+  mech: "tendon finger"
+  blurb: "claw index · 3 dof"
+  dofs:
+    spread: { id: spread, group: spread, unit: "°", min: -8,  max: 60,  home: 0 }
+    flex:   { id: flex,   group: flex,   unit: "°", min: -70, max: 120, home: 0 }
+    curl:   { id: curl,   group: curl,   unit: "°", min: -20, max: 110, home: 0 }

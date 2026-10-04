@@ -1,0 +1,16 @@
+# palm_mount — the BASE the 3-finger claw's palm sits on (minimal hex plate + tendon
+# feed-through). One center norm socket: the neck the palm adapter snaps onto.
+# Frames VERBATIM from the with-limits re-export (07.07.2026); orientation baked upright.
+# model_frame = palm_base body world pose (the STL is in link coords).
+name: palm_mount
+label: "Palm base"
+model: palm_base.stl
+model_frame:
+  pos: [-0.000588, -0.000952, -0.040913]
+  euler: [1.570796327, 0.785398163, 1.570796327]
+sockets:
+  - id: center
+    kind: center
+    frame:
+      pos: [-0.002737, 0.001197, 0.110000]
+      euler: [0.0, 0.0, 2.356194490]

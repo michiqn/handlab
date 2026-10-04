@@ -1,0 +1,65 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+.venv/
+*.egg-info/
+build/
+dist/
+handlab/sim/composed/
+packaging/handlab.iconset/
+# per-machine / user state (migration seeds only — canonical copies live in ~/.handlab/;
+# builds/<name>.yaml build DEFINITIONS stay tracked)
+handlab/builds/*.poses.yaml
+# calibration.yaml + its .bak_* snapshots (NOT claw3f.yaml — different name)
+handlab/builds/calibration.yaml*
+# Claude Code local settings (permissions etc.) — NEVER commit, also once a remote exists
+.claude/
+# working / agent scratch docs — kept local, not in the repo
+/CLAUDE.md
+/AGENTS.md
+/STATUS.md
+/PLAN.md
+/TOMORROW.md
+/ESSENCE.md
+/CRAFT_ALIGNMENT_REVIEW.md
+# large paper PDF — keep the git history slim
+/craft_paper.pdf
+# generated staging output of tools/import_assembly.py (its default --out) — never commit;
+# the reviewed copy lives in handlab/library
+**/_library/
+# WiLoR teleop (tracking/): license-gated MANO models + auto-downloaded checkpoints — never commit
+tracking/mano_data/
+tracking/**/*.pkl
+tracking/**/*.ckpt
+tracking/**/*.pt
+# CAD / office binaries — belong in the hardware repo, never here
+*.f3d
+*.pptx
+/Literature/
+# transient office lock files
+~$*
+# private dev history (German devlog + bring-up chronicle) — kept LOCAL, not published
+/archive/
+# public-release audit report (local only)
+/AUDIT.md
+# tool output written into the CWD (tools/characterize.py)
+characterize_*.csv
+# recordings / datasets (demo recorder defaults to ~/handlab_demos — safety net)
+*.npz
+# envs, caches, logs, editors
+.env
+.env.*
+venv/
+.venv*/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
+.idea/
+.vscode/
+# internal docs (architecture/agent/design notes, marker register + sheets) — kept LOCAL, not published;
+# only README media is public
+/docs/*
+!/docs/media/

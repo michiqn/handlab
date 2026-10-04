@@ -1,0 +1,39 @@
+[project]
+name = "handlab"
+version = "0.0.1"
+description = "Modular, config-driven control center + digital twin for tendon-driven robotic hands/arms"
+requires-python = ">=3.12"
+dependencies = [
+    "PySide6>=6.7",      # native Qt/QML desktop UI
+    "mujoco>=3.1",       # physics twin (offscreen render via mujoco.Renderer, MUJOCO_GL=cgl on macOS)
+    "numpy>=1.26",
+    "PyYAML>=6.0",       # build + library manifests
+]
+
+[project.optional-dependencies]
+hardware = ["dynamixel-sdk>=3.7"]   # real servos (when the motors arrive)
+agent = ["mcp>=1.2,<2"]             # handlab MCP server (FastMCP: >=1.2; mcp 2.x renamed it — not migrated yet)
+vision = ["opencv-python-headless>=4.7"]  # ArUco marker detection (cv2.aruco ≥4.7) on the Agent-tab camera; the headless build omits OpenCV's own Qt so it can't clash with PySide6
+# WiLoR hand-tracking teleop runs as a SEPARATE process + venv (torch/MANO, license-gated) — see
+# tracking/README.md; it is deliberately NOT a handlab extra (nothing here imports torch).
+dev = ["pytest>=8.0"]
+package = ["pyinstaller>=6.0"]      # build the double-clickable .app (packaging/handlab.spec)
+
+[project.scripts]
+handlab = "handlab.app:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["handlab*"]
+
+[tool.setuptools.package-data]
+# everything the app loads from inside the package at runtime
+handlab = ["ui/qml/*", "ui/assets/*", "library/**/*", "builds/*.yaml"]
+
+[tool.setuptools.exclude-package-data]
+# per-machine user state (gitignored) must never ship in a wheel
+handlab = ["builds/*.poses.yaml", "builds/calibration.yaml"]

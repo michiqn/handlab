@@ -1,0 +1,32 @@
+# Claw mid — the mid-slot finger of the 3-finger claw. Same printed part as claw_finger,
+# own verbatim bundle (own local frame). Chain + joints + limits VERBATIM from the CORRECTED
+# re-export (tests/fixtures/sim_assembly_v67.xml, 07.07.2026); home = 0 = stretched rest.
+# ✅ DIRECTION FIXED AT THE CAD SOURCE: the SPREAD joint was re-defined in Fusion so it now
+# runs [-45°, +55°] (positive-dominant, like index-spread). The old sim-side axis flip
+# (sim_sign) is therefore NO LONGER needed and was removed.
+name: claw_mid
+label: "Claw mid"
+motors: 3
+slot: finger
+
+dofs:
+  - { key: spread, label: "Spread", joint: "palm_index_mcp-spread", range: [-0.785398, 0.959931] }
+  - { key: flex,   label: "Flex",   joint: "mcp_yoke_mid_Umdrehung-20", range: [-1.221730, 2.094395] }
+  - { key: curl,   label: "Curl",   joint: "mid_proximal_Umdrehung-15", range: [-0.349066, 1.919862], coupled: true }
+
+couplings:
+  - { driver: "mid_proximal_Umdrehung-15", follower: "mid_mid_Umdrehung-16", ratio: 1.0 }
+
+model: model.xml
+root_body: "mcp_yoke_mid"
+
+tuning: { damping: 0.005, armature: 1.0e-6, kp: 1.0, kv: 0.03 }
+
+ui:
+  id: claw_mid
+  mech: "tendon finger"
+  blurb: "claw mid · 3 dof"
+  dofs:
+    spread: { id: spread, group: spread, unit: "°", min: -45, max: 55,  home: 0 }
+    flex:   { id: flex,   group: flex,   unit: "°", min: -70, max: 120, home: 0 }
+    curl:   { id: curl,   group: curl,   unit: "°", min: -20, max: 110, home: 0 }

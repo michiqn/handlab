@@ -1,0 +1,37 @@
+# The PALM4 — 4-slot adapter for the 4-finger hand. Snaps onto the palm base's center norm and
+# carries FOUR typed finger slots: index + mid + ring take the regular finger, thumb takes the
+# thumb. The first three port frames are VERBATIM from the 3-slot palm (07.07.2026, --check OK);
+# the RING port frame is a ROUGH stand-in (twin only — off the control critical path).
+# Re-export a real 4-slot palm mesh + measured ring frame when the CAD is ready; the real hand +
+# the servo mapping don't depend on it (geometry only, no joints).
+name: palm4
+label: "Palm · 4 slots"
+fits: center
+
+mesh: palm_adapter.stl
+mesh_scale: 0.001
+mesh_frame: { pos: [0.0, 0.0, 0.0], euler: [0.0, 0.0, 0.0] }
+
+# order = display order (P1/P2/P3/P4): thumb, index, mid, ring
+ports:
+  - id: thumb
+    label: "Thumb slot"
+    accepts: thumb
+    frame: { pos: [-0.230636, 0.030000, 0.071899],
+             euler: [0.0, -1.570796327, 0.0] }
+  - id: index
+    label: "Index slot"
+    accepts: finger
+    frame: { pos: [-0.126282, -0.016881, 0.090000],
+             euler: [0.0, 0.0, -1.570796327] }
+  - id: mid
+    label: "Mid slot"
+    accepts: finger
+    frame: { pos: [-0.012000, -0.063000, 0.110000],
+             euler: [0.0, 0.0, 0.0] }
+  - id: ring
+    label: "Ring slot"
+    accepts: finger
+    # ROUGH stand-in frame (offset +y from index) — replace with the measured value on re-export.
+    frame: { pos: [-0.126282, 0.046000, 0.090000],
+             euler: [0.0, 0.0, -1.570796327] }

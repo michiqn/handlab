@@ -1,0 +1,29 @@
+# The PALM — the adapter of the 3-finger claw. Snaps onto the palm base's center norm and
+# carries THREE typed finger slots: index + mid take the regular finger, thumb takes the
+# thumb. Frames VERBATIM from the with-limits re-export (07.07.2026); all yokes native
+# (mirror-free) — every port's spread pin lands on the palm mesh at 4.5 mm (--check OK).
+name: palm
+label: "Palm · 3 slots"
+fits: center
+
+mesh: palm_adapter.stl
+mesh_scale: 0.001
+mesh_frame: { pos: [0.0, 0.0, 0.0], euler: [0.0, 0.0, 0.0] }
+
+# order = display order (P1/P2/P3): index, thumb, mid
+ports:
+  - id: index
+    label: "Index slot"
+    accepts: finger
+    frame: { pos: [-0.126282, -0.016881, 0.090000],
+             euler: [0.0, 0.0, -1.570796327] }
+  - id: thumb
+    label: "Thumb slot"
+    accepts: thumb
+    frame: { pos: [-0.230636, 0.030000, 0.071899],
+             euler: [0.0, -1.570796327, 0.0] }
+  - id: mid
+    label: "Mid slot"
+    accepts: finger
+    frame: { pos: [-0.012000, -0.063000, 0.110000],
+             euler: [0.0, 0.0, 0.0] }

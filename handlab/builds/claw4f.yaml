@@ -1,0 +1,37 @@
+# The 4-finger hand, MODULAR — palm_mount (hex base) -> palm4 (adapter, 4 typed slots) ->
+# claw_finger (index) + claw_mid (mid) + claw_ring (ring) + claw_thumb. index/mid/ring are the
+# same printed regular finger (separate types only for their role labels); each slot gets its own
+# prefixed bundle at compose time.
+# The palm4 adapter's RING frame is a rough twin stand-in — the real hand + this servo
+# mapping don't depend on twin geometry.
+# Run headless with:  HANDLAB_BUILD=claw4f ~/.venvs/handlab/bin/python -m handlab
+#
+# Servo IDs (physical Dynamixel IDs — this file is the SINGLE source of truth; the QML seeds from it):
+#   thumb -> 1 (spread) 2 (flex) 3 (curl)
+#   index -> 4 (spread) 5 (flex) 6 (curl)
+#   mid   -> 7 (spread) 8 (flex) 9 (curl)
+#   ring  -> 11 (spread) 10 (flex) 12 (curl)   <- spread/flex wired swapped vs the others (16.08)
+name: claw4f
+mount: palm_mount
+adapter: palm4
+# Motion/force feel — copied from claw3f (08.07 "balanced" tune). Read ONCE at app start →
+# restart (not just reconnect) after a change.
+hardware:
+  model: XL330-M288-T
+  ticks_per_rev: 4096
+  port: "/dev/cu.usbserial-FILL_ME"   # UI picks the real port on Connect
+  baud: 1000000
+  profile_velocity: 200               # ~46 rev/min
+  profile_acceleration: 50
+  goal_current: 1300                  # mA MOVE force
+  hold_current: 550                   # mA HOLD force — 12x550 = 6.6A < 10A supply (was 9x550 on claw3f)
+  pos_p: 900                          # firmware default 250 is too soft; driver re-pins PID after opmode
+  pos_i: 0
+  pos_d: 0
+  current_limit: 1500                 # mA EEPROM ceiling
+
+fingers:
+  - { id: thumb, type: claw_thumb,  socket: thumb, servos: [1, 2, 3] }
+  - { id: index, type: claw_finger, socket: index, servos: [4, 5, 6] }
+  - { id: mid,   type: claw_mid,    socket: mid,   servos: [7, 8, 9] }
+  - { id: ring,  type: claw_ring,   socket: ring,  servos: [11, 10, 12] }
