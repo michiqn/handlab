@@ -50,7 +50,7 @@ servo count and render rate.</sub>
   each finger has 3 servos → 3 DOFs (`spread`, `flex`, coupled `curl`).
 - **Dynamixel XL330** servos (XL330-M288-T) on a **U2D2** USB interface, Protocol 2.0.
 - CAD, photos and build material live in a separate hardware repo
-  <!-- TODO(michael): link once published --> (`handlab-hardware`, coming soon).
+  [**handlab-hardware**](https://github.com/michiqn/handlab-hardware).
 
 No hardware? Everything runs against the MuJoCo twin.
 
