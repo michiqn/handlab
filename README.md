@@ -13,11 +13,12 @@
 ![Teleop](https://img.shields.io/badge/teleop-WiLoR-2FA4A4)
 
 <!-- TODO(michael): replace with real footage at docs/media/hero.gif (hand + twin moving together) -->
-<img src="docs/media/control_panel.png" width="100%" alt="The handlab Control tab: live MuJoCo twin of the 4-finger hand next to per-finger servo controls">
+<img src="docs/media/4finger.gif" height="360" alt="The real 4-finger tendon-driven hand moving its fingers">
+&nbsp;
+<img src="docs/media/control_panel.png" height="360" alt="The handlab Control tab: live MuJoCo twin of the 4-finger hand next to per-finger servo controls">
 
-<sub>The <b>Control</b> tab: the live MuJoCo twin of the 4-finger hand (left) next to one card per finger,
-with per-servo torque switches and a slider per DOF (right). The top bar shows the active driver,
-servo count and render rate.</sub>
+<sub>Left: the real 4-finger hand. Right: the <b>Control</b> tab — the live MuJoCo twin next to one card
+per finger, with per-servo torque switches and a slider per DOF.</sub>
 
 </div>
 
