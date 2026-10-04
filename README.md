@@ -53,8 +53,6 @@ per finger, with per-servo torque switches and a slider per DOF.</sub>
 - CAD, photos and build material live in a separate hardware repo
   [**handlab-hardware**](https://github.com/michiqn/handlab-hardware).
 
-No hardware? Everything runs against the MuJoCo twin.
-
 ## Quickstart
 
 Requirements: **macOS** (tested on Apple Silicon; the twin renders offscreen with
